@@ -1,0 +1,309 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "default": {},
+  "title": "Root Schema",
+  "required": [
+    "name",
+    "description",
+    "template",
+    "headers",
+    "dataSchema",
+    "logic"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "default": "",
+      "title": "The name Schema",
+      "examples": [
+        "Birthday Card"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "default": "",
+      "title": "The description Schema",
+      "examples": [
+        "A card that says happy birthday."
+      ]
+    },
+    "template": {
+      "type": "string",
+      "default": "",
+      "title": "The template Schema",
+      "examples": [
+        "\u003cb\u003eHello {{name}}!\u003c/b\u003e\u003cbr/\u003e Happy {{age}}th birthday!\u003cbr/\u003e {{turning}} is coming up soon!"
+      ]
+    },
+    "headers": {
+      "type": "array",
+      "default": [],
+      "title": "The headers Schema",
+      "items": {
+        "type": "object",
+        "default": {},
+        "title": "A Schema",
+        "required": [
+          "name",
+          "value"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "default": "",
+            "title": "The name Schema",
+            "examples": [
+              "Content-Type"
+            ]
+          },
+          "value": {
+            "type": "string",
+            "default": "",
+            "title": "The value Schema",
+            "examples": [
+              "text/html"
+            ]
+          }
+        },
+        "examples": [{
+          "name": "Content-Type",
+          "value": "text/html"
+        }]
+      },
+      "examples": [
+        [{
+          "name": "Content-Type",
+          "value": "text/html"
+        }]
+      ]
+    },
+    "dataSchema": {
+      "type": "object",
+      "default": {},
+      "title": "The dataSchema Schema",
+      "required": [
+        "type",
+        "properties",
+        "required"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "default": "",
+          "title": "The type Schema",
+          "examples": [
+            "object"
+          ]
+        },
+        "properties": {
+          "type": "object",
+          "default": {},
+          "title": "The properties Schema",
+          "required": [
+            "name",
+            "age"
+          ],
+          "properties": {
+            "name": {
+              "type": "object",
+              "default": {},
+              "title": "The name Schema",
+              "required": [
+                "type"
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The type Schema",
+                  "examples": [
+                    "string"
+                  ]
+                }
+              },
+              "examples": [{
+                "type": "string"
+              }]
+            },
+            "age": {
+              "type": "object",
+              "default": {},
+              "title": "The age Schema",
+              "required": [
+                "type"
+              ],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The type Schema",
+                  "examples": [
+                    "number"
+                  ]
+                }
+              },
+              "examples": [{
+                "type": "number"
+              }]
+            }
+          },
+          "examples": [{
+            "name": {
+              "type": "string"
+            },
+            "age": {
+              "type": "number"
+            }
+          }]
+        },
+        "required": {
+          "type": "array",
+          "default": [],
+          "title": "The required Schema",
+          "items": {
+            "type": "string",
+            "title": "A Schema",
+            "examples": [
+              "name",
+              "age"
+            ]
+          },
+          "examples": [
+            ["name",
+              "age"
+            ]
+          ]
+        }
+      },
+      "examples": [{
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "age": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "name",
+          "age"
+        ]
+      }]
+    },
+    "logic": {
+      "type": "object",
+      "default": {},
+      "title": "The logic Schema",
+      "required": [
+        "turning"
+      ],
+      "properties": {
+        "turning": {
+          "type": "object",
+          "default": {},
+          "title": "The turning Schema",
+          "required": [
+            "+"
+          ],
+          "properties": {
+            "+": {
+              "type": "array",
+              "default": [],
+              "title": "The + Schema",
+              "items": {
+                "anyOf": [{
+                  "type": "object",
+                  "default": {},
+                  "title": "A Schema",
+                  "required": [
+                    "var"
+                  ],
+                  "properties": {
+                    "var": {
+                      "type": "string",
+                      "default": "",
+                      "title": "The var Schema",
+                      "examples": [
+                        "age"
+                      ]
+                    }
+                  },
+                  "examples": [{
+                    "var": "age"
+                  }]
+                },
+                  {
+                    "type": "integer",
+                    "default": 0,
+                    "title": "A Schema",
+                    "examples": [
+                      1
+                    ]
+                  }]
+              },
+              "examples": [
+                [{
+                  "var": "age"
+                },
+                  1
+                ]
+              ]
+            }
+          },
+          "examples": [{
+            "+": [{
+              "var": "age"
+            },
+              1
+            ]
+          }]
+        }
+      },
+      "examples": [{
+        "turning": {
+          "+": [{
+            "var": "age"
+          },
+            1
+          ]
+        }
+      }]
+    }
+  },
+  "examples": [{
+    "name": "Birthday Card",
+    "description": "A card that says happy birthday.",
+    "template": "\u003cb\u003eHello {{name}}!\u003c/b\u003e\u003cbr/\u003e Happy {{age}}th birthday!\u003cbr/\u003e {{turning}} is coming up soon!",
+    "headers": [{
+      "name": "Content-Type",
+      "value": "text/html"
+    }],
+    "dataSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "age": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "name",
+        "age"
+      ]
+    },
+    "logic": {
+      "turning": {
+        "+": [{
+          "var": "age"
+        },
+          1
+        ]
+      }
+    }
+  }]
+}
